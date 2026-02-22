@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./UserSignup.css";
 
+// 🔥 Live Backend URL
+const API_BASE = "https://localfix-kwvf.onrender.com";
+
 function UserSignup({ onSuccess, goBack }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +11,7 @@ function UserSignup({ onSuccess, goBack }) {
   const [success, setSuccess] = useState("");
 
   const handleSignup = async (e) => {
-    e.preventDefault(); // prevent page refresh
+    e.preventDefault();
     setError("");
     setSuccess("");
 
@@ -18,7 +21,7 @@ function UserSignup({ onSuccess, goBack }) {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/auth/signup", {
+      const res = await fetch(`${API_BASE}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -48,9 +51,7 @@ function UserSignup({ onSuccess, goBack }) {
         <h2>Create Account</h2>
         <p className="subtext">Sign up to start reporting issues.</p>
 
-        {/* ✅ Form wrapper prevents autofill */}
         <form autoComplete="off" onSubmit={handleSignup}>
-          
           <input
             type="text"
             name="username"

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./ViewIssues.css";
 
+// 🔥 Live Backend URL
+const API_BASE = "https://localfix-kwvf.onrender.com";
+
 function ViewIssues({ goBack }) {
   const [issues, setIssues] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -8,11 +11,11 @@ function ViewIssues({ goBack }) {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`http://localhost:5000/issues/user/${user.id}`)
+    fetch(`${API_BASE}/issues/user/${user.id}`)
       .then((res) => res.json())
       .then((data) => setIssues(data))
       .catch(() => alert("Failed to fetch issues"));
-  }, []);
+  }, [user]);
 
   return (
     <div className="issues-page">
@@ -31,7 +34,7 @@ function ViewIssues({ goBack }) {
             {/* IMAGE */}
             {issue.image && (
               <img
-                src={`http://localhost:5000${issue.image}`}
+                src={`${API_BASE}${issue.image}`}
                 alt="Issue"
                 className="issue-image"
               />
@@ -55,7 +58,7 @@ function ViewIssues({ goBack }) {
               <div className="field-box big">{issue.location}</div>
             </div>
 
-            {/* STATUS DISPLAY ONLY (NO EDIT FOR NORMAL USER) */}
+            {/* STATUS DISPLAY */}
             <div className="status-display">
               <strong>Status:</strong>{" "}
               <span
@@ -68,7 +71,6 @@ function ViewIssues({ goBack }) {
                 {issue.status}
               </span>
             </div>
-
           </div>
         ))}
       </div>
