@@ -3,6 +3,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "./ReportIssue.css";
 
+// 🔥 Live Backend URL
+const API_BASE = "https://localfix-kwvf.onrender.com";
+
 // Fix Leaflet icon issue
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -72,14 +75,13 @@ function ReportIssue({ goBack }) {
 
       if (image) formData.append("image", image);
 
-      const res = await fetch("http://localhost:5000/issues", {
+      const res = await fetch(`${API_BASE}/issues`, {
         method: "POST",
         body: formData,
       });
 
       if (!res.ok) throw new Error("Failed to submit");
 
-      // Show success message
       setMessage("✅ Issue reported successfully!");
 
       // Reset form
@@ -90,7 +92,6 @@ function ReportIssue({ goBack }) {
       setLongitude(null);
       setImage(null);
 
-      // 🔥 Go back after 1 second
       setTimeout(() => {
         goBack();
       }, 1000);
@@ -105,13 +106,11 @@ function ReportIssue({ goBack }) {
   return (
     <div className="report-container">
       <div className="report-box">
-
         <div className="report-header">
           <h2>Report an Issue</h2>
         </div>
 
         <form onSubmit={submitIssue}>
-
           <input
             type="text"
             placeholder="Issue Title *"
