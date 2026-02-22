@@ -12,7 +12,10 @@ const Issue = require("./models/Issue");
 const app = express();
 
 /* ================= MIDDLEWARE ================= */
-app.use(cors({ origin: "http://localhost:3000" }));
+
+// Allow all origins (important for deployment)
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,9 +30,7 @@ app.use("/uploads", express.static(uploadPath));
 
 /* ================= MONGODB CONNECTION ================= */
 mongoose
-  .connect(
-    "mongodb+srv://sanjanakamnoor05:Sanju12@cluster0.porzvcu.mongodb.net/localfix"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB error:", err));
 
@@ -106,12 +107,8 @@ app.post("/issues", upload.single("image"), async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       location: req.body.location,
-      latitude: req.body.latitude
-        ? Number(req.body.latitude)
-        : null,
-      longitude: req.body.longitude
-        ? Number(req.body.longitude)
-        : null,
+      latitude: req.body.latitude ? Number(req.body.latitude) : null,
+      longitude: req.body.longitude ? Number(req.body.longitude) : null,
       image: req.file ? `/uploads/${req.file.filename}` : null,
       userId: req.body.userId,
       username: req.body.username,
@@ -119,7 +116,6 @@ app.post("/issues", upload.single("image"), async (req, res) => {
     });
 
     const savedIssue = await newIssue.save();
-
     res.status(201).json(savedIssue);
   } catch (err) {
     console.error("❌ Error creating issue:", err);
@@ -138,7 +134,7 @@ app.get("/issues", async (req, res) => {
   }
 });
 
-// GET ISSUES BY USER (NORMAL USER)
+// GET ISSUES BY USER
 app.get("/issues/user/:userId", async (req, res) => {
   try {
     const issues = await Issue.find({
@@ -152,7 +148,7 @@ app.get("/issues/user/:userId", async (req, res) => {
   }
 });
 
-// UPDATE STATUS (ADMIN)
+// UPDATE STATUS
 app.put("/issues/:id/status", async (req, res) => {
   try {
     const updated = await Issue.findByIdAndUpdate(
@@ -168,7 +164,7 @@ app.put("/issues/:id/status", async (req, res) => {
   }
 });
 
-// DELETE ISSUE (ADMIN) + DELETE IMAGE FILE
+// DELETE ISSUE
 app.delete("/issues/:id", async (req, res) => {
   try {
     const issue = await Issue.findById(req.params.id);
@@ -176,7 +172,6 @@ app.delete("/issues/:id", async (req, res) => {
     if (!issue)
       return res.status(404).json({ message: "Issue not found" });
 
-    // Delete image file if exists
     if (issue.image) {
       const imagePath = path.join(
         __dirname,
@@ -191,8 +186,6 @@ app.delete("/issues/:id", async (req, res) => {
 
     await Issue.findByIdAndDelete(req.params.id);
 
-    console.log("🗑 Issue deleted:", req.params.id);
-
     res.json({ message: "Issue deleted successfully" });
   } catch (err) {
     console.error("❌ Delete error:", err);
@@ -204,6 +197,8 @@ app.delete("/issues/:id", async (req, res) => {
                         SERVER
 ====================================================== */
 
-app.listen(5000, () => {
-  console.log("🚀 Backend running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Backend running on port ${PORT}`);
 });
