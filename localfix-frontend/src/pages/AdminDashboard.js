@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./AdminDashboard.css";
 
+const API_BASE = "https://localfix-kwvf.onrender.com";
+
 function AdminDashboard({ goBack }) {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/issues")
+    fetch(`${API_BASE}/issues`)
       .then((res) => res.json())
       .then((data) => setIssues(data))
       .catch((err) => console.log(err));
@@ -14,7 +16,7 @@ function AdminDashboard({ goBack }) {
 
   const updateStatus = async (id, newStatus) => {
     const res = await fetch(
-      `http://localhost:5000/issues/${id}/status`,
+      `${API_BASE}/issues/${id}/status`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -37,7 +39,7 @@ function AdminDashboard({ goBack }) {
     );
     if (!confirmDelete) return;
 
-    await fetch(`http://localhost:5000/issues/${id}`, {
+    await fetch(`${API_BASE}/issues/${id}`, {
       method: "DELETE",
     });
 
@@ -48,7 +50,6 @@ function AdminDashboard({ goBack }) {
 
   return (
     <div className="admin-wrapper">
-
       <div className="admin-header">
         <h2>Admin Dashboard</h2>
         <button className="admin-back-btn" onClick={goBack}>
@@ -61,13 +62,12 @@ function AdminDashboard({ goBack }) {
       <div className="admin-issues">
         {issues.map((issue) => (
           <div key={issue._id} className="admin-card">
-
             <h4>{issue.title}</h4>
             <p>{issue.description}</p>
 
             {issue.image && (
               <img
-                src={`http://localhost:5000${issue.image}`}
+                src={`${API_BASE}${issue.image}`}
                 alt="Issue"
                 className="admin-image"
               />
@@ -114,7 +114,6 @@ function AdminDashboard({ goBack }) {
             >
               🗑 Delete
             </button>
-
           </div>
         ))}
       </div>
