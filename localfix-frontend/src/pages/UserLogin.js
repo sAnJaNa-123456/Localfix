@@ -3,6 +3,9 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import "./UserLogin.css";
 
+// 🔥 Live Backend URL
+const API_BASE = "https://localfix-kwvf.onrender.com";
+
 function UserLogin({ onSuccess, goToSignup }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,52 +13,52 @@ function UserLogin({ onSuccess, goToSignup }) {
 
   // ✅ Normal Login
   const loginUser = async (e) => {
-  e.preventDefault();
-  setError("");
+    e.preventDefault();
+    setError("");
 
-  if (!username || !password) {
-    setError("Please enter username and password");
-    return;
-  }
-
-  /* ==========================
-     ✅ HARDCODED ADMIN LOGIN
-  ========================== */
-  if (username === "admin" && password === "admin123") {
-    const adminUser = {
-      username: "admin",
-      role: "admin"
-    };
-
-    localStorage.setItem("user", JSON.stringify(adminUser));
-    onSuccess(adminUser);
-    return;
-  }
-
-  /* ==========================
-     NORMAL USER LOGIN
-  ========================== */
-  try {
-    const res = await fetch("http://localhost:5000/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      setError(data.message || "Login failed");
+    if (!username || !password) {
+      setError("Please enter username and password");
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(data.user));
-    onSuccess(data.user);
+    /* ==========================
+       ✅ HARDCODED ADMIN LOGIN
+    ========================== */
+    if (username === "admin" && password === "admin123") {
+      const adminUser = {
+        username: "admin",
+        role: "admin"
+      };
 
-  } catch {
-    setError("Server error. Try again.");
-  }
-};
+      localStorage.setItem("user", JSON.stringify(adminUser));
+      onSuccess(adminUser);
+      return;
+    }
+
+    /* ==========================
+       NORMAL USER LOGIN
+    ========================== */
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Login failed");
+        return;
+      }
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      onSuccess(data.user);
+
+    } catch {
+      setError("Server error. Try again.");
+    }
+  };
 
   // ✅ Google Login
   const loginWithGoogle = async () => {
@@ -85,9 +88,7 @@ function UserLogin({ onSuccess, goToSignup }) {
         <h2>Welcome Back</h2>
         <p className="subtext">Login to continue to LocalFix.</p>
 
-        {/* ✅ FORM WRAPPER (prevents autofill issues) */}
         <form autoComplete="off" onSubmit={loginUser}>
-          
           <input
             type="text"
             name="username"
