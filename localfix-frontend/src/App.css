@@ -1,0 +1,240 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+
+/* =========================
+   NAVBAR (Government Style)
+========================= */
+
+.navbar {
+  width: 100%;
+  background: #0b3d91;
+  padding: 14px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.navbar h2 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.navbar button {
+  background: white;
+  color: #0b3d91;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.navbar button:hover {
+  background: #e6e6e6;
+}
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+
+.home-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section h1{
+  font-size: 60px;
+}
+
+
+
+
+
+
+
+
+.home-buttons {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.report-btn,
+.view-btn,
+.admin-btn {
+  width: auto !important;      
+  min-width: 220px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
+.report-btn {
+  background-color: #1976d2;
+  color: white;
+  border-radius: 30px;
+}
+
+.report-btn:hover {
+  background-color: #125ea8;
+}
+
+.view-btn {
+  background-color: white;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+}
+
+.view-btn:hover {
+  background-color: #e3f2fd;
+}
+
+/* Admin */
+.admin-btn {
+  background-color: #444;
+  color: white;
+  border: none;
+}
+
+.admin-btn:hover {
+  background-color: #222;
+}
+
+
+/* =========================
+   SERVICES SECTION
+========================= */
+
+.services-section {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 20px;
+  background: #ffffff;
+  flex-wrap: wrap;
+  margin-top: 70px;
+}
+
+.service-card {
+  background: #f9fafb;
+  padding: 25px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.service-card h3 {
+  color: #0b3d91;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  width: 100%;
+  background: #0b3d91;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* =========================
+   STATUS TOGGLE
+========================= */
+
+.status-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.status-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.status-btn.active.pending {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}
+
+.status-btn.active.resolved {
+  background-color: #e6f4ea;
+  border-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    padding: 40px 15px;
+  }
+
+  /* .home-buttons {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .home-buttons button {
+    width: 80%;
+  } */
+
+  .services-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-card {
+    width: 90%;
+  }
+}

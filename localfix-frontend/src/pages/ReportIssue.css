@@ -1,0 +1,148 @@
+/* =========================
+   REPORT ISSUE PAGE
+========================= */
+
+.report-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f5f7fa;
+}
+
+.report-box {
+  width: 100%;
+  max-width: 650px;
+  background: white;
+  padding: 35px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.report-box h2 {
+  margin-bottom: 25px;
+  color: #0b3d91;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* =========================
+   FORM INPUTS
+========================= */
+
+.report-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-box input,
+.report-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.report-box input:focus,
+.report-box textarea:focus {
+  border-color: #0b3d91;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(11, 61, 145, 0.1);
+}
+
+.report-box textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* =========================
+   FILE INPUT
+========================= */
+
+.report-box input[type="file"] {
+  padding: 8px;
+  background: #fafafa;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.report-box button[type="submit"] {
+  padding: 12px;
+  background: #0b3d91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.report-box button[type="submit"]:hover {
+  background: #082d6c;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+  width: 40%;
+  padding: 10px;
+  background: #0b3d91;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #e7e6ec;
+}
+.location-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.location-group input {
+  flex: 1;
+}
+
+.gps-btn {
+  background: #0b3d91;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.gps-btn:hover {
+  background: #082d6c;
+}
+.map-preview {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}

@@ -1,0 +1,448 @@
+* {
+  box-sizing: border-box;
+}
+
+/* PAGE */
+.issues-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f4f6f8;
+}
+
+.issues-page h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* GRID */
+.issues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 26px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* CARD */
+.issue-card {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.status-toggle {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.status-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+/* Pending */
+.status-btn.pending {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+/* Resolved */
+.status-btn.resolved {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
+
+/* Inactive */
+.status-btn.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+/* COMMON FIELD BOX */
+.field-box {
+  background: #f8fafc;           /* cooler soft background */
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;            /* more breathing space */
+  font-size: 15px;               /* ⬆ slightly bigger */
+  color: #334155;                /* cool slate color */
+  line-height: 1.6;
+}
+/* DESCRIPTION SPECIAL */
+.field-box.description {
+  font-size: 15.5px;
+  background: #f1f5f9;           /* slightly darker for focus */
+}
+/* ICON INSIDE BOX */
+.field-box.with-icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.field-box.with-icon span.icon {
+  font-size: 16px;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+
+/* STATUS */
+.status-section {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+
+.status-toggle {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.status-btn {
+  padding: 6px 18px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.status-btn:hover {
+  background: #f3f4f6;
+}
+
+.status-btn.active.pending {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.status-btn.active.resolved {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+/* STATUS BUTTON BASE */
+.status-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+/* INACTIVE (always visible!) */
+.status-btn.inactive {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px dashed #cbd5e1;
+}
+
+/* ACTIVE STATES */
+.status-btn.active.pending {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.status-btn.active.resolved {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+/* HOVER */
+.status-btn:hover {
+  transform: scale(1.03);
+}
+
+/* BACK BUTTON */
+.back-btn {
+  margin: 40px auto 0;
+  display: block;
+  padding: 10px 28px;
+  border-radius: 12px;
+  border: none;
+  background: #1e40af;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #1e3a8a;
+}
+/* CATEGORY CHIP */
+.category-chip {
+  align-self: flex-start;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+/* Category colors */
+.category-chip.road {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.category-chip.water {
+  background: #ecfeff;
+  color: #155e75;
+}
+
+.category-chip.electricity {
+  background: #fefce8;
+  color: #854d0e;
+}
+
+.category-chip.garbage {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.category-chip.other {
+  background: #f3f4f6;
+  color: #374151;
+}
+/* FILTERS */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-btn.active {
+  background: #1e40af;
+  color: white;
+  border-color: #1e40af;
+}
+
+/* BADGES */
+.top-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.priority-badge {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-badge {
+  background: #e0f2fe;
+  color: #075985;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* TIME */
+.time-ago {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+/* MAP BUTTON */
+.map-btn {
+  margin-top: 8px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #1e40af;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-btn:hover {
+  background: #e0e7ff;
+}
+
+/* MAP CONTAINER */
+.map-container {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+}
+/* FIELD WRAPPER */
+.field {
+  margin-bottom: 14px;
+}
+
+/* LABEL */
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* FIELD BOX (COMMON) */
+.field-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.5;
+}
+
+/* TITLE */
+.title-box {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+/* DESCRIPTION (BIG & BOLD) */
+.field-box.description {
+  font-size: 16px;
+  font-weight: 500;
+  background: #f8fafc;
+}
+
+/* LOCATION */
+.field-box.location {
+  font-size: 15px;
+  font-weight: 500;
+  background: #f1f5f9;
+}
+
+/* ICON INSIDE FIELD */
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.with-icon .icon {
+  font-size: 18px;
+}
+.leaflet-map {
+  height: 260px;
+  width: 100%;
+  border-radius: 14px;
+  margin: 12px 0 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.map-note {
+  font-size: 13px;
+  color: #2563eb;
+  margin-top: 6px;
+}
+.issue-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.field-box {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.field-box.big {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.status-toggle {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.status-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.status-btn.active.pending {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.status-btn.active.resolved {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
